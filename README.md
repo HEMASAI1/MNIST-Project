@@ -106,9 +106,3 @@ Example Predictions:
 This project is licensed under the MIT License.
 
 ---
-
-### 👨‍💻 Author
-
-**Your Name**  
-Final Year CSE (AI & ML) Student  
-[LinkedIn](https://linkedin.com/in/yourprofile) | [GitHub](https://github.com/yourusername)
