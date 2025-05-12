@@ -65,7 +65,7 @@ The goal of this project is to classify grayscale 28x28 pixel images of handwrit
 
 1. Clone this repo:
 ```bash
-git clone https://github.com/Hemasai1/digit-recognition-cnn.git
+git clone [https://github.com/Hemasai1/digit-recognition-cnn.git](https://github.com/HEMASAI1/MNIST-Project)
 cd digit-recognition-cnn
 ```
 
@@ -86,18 +86,15 @@ jupyter notebook digit_recognition.ipynb
 - **Test Accuracy**: ~99.0%
 - **Training Time**: ~7 minutes on CPU (varies by system)
 
-Example Predictions:
-![Prediction Samples](download.png)
-
 ---
 
 ## 🔧 Improvements & Future Work
 
-- 🔄 Use real-world handwritten data (e.g., EMNIST)
+- 🔄 Using real-world handwritten data (e.g., EMNIST)
 - ✍️ Add live drawing input using OpenCV or Tkinter
-- 📱 Deploy as a web/mobile app
-- ☁️ Build a REST API using Flask or FastAPI
-- 🎯 Integrate multi-digit sequence recognition
+- 📱 Deploying as a web/mobile app
+- ☁️ Building a REST API using Flask or FastAPI
+- 🎯 Integrating multi-digit sequence recognition
 
 ---
 
