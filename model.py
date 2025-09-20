@@ -1,0 +1,65 @@
+import os
+from numpy import unique, argmax
+from tensorflow.keras.datasets.mnist import load_data
+from tensorflow.keras import Sequential
+from tensorflow.keras.layers import Conv2D
+from tensorflow.keras.layers import MaxPool2D
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.layers import Flatten
+from tensorflow.keras.layers import Dropout
+#from tensorflow.keras.utils import plot_model
+from matplotlib import pyplot
+import matplotlib.pyplot as plt
+import numpy as np
+
+(x_train, y_train), (x_test, y_test) = load_data()
+x_train=x_train.reshape((x_train.shape[0], x_train.shape[1], x_train.shape[2], 1))
+x_test=x_test.reshape((x_test.shape[0], x_test.shape[1], x_test.shape[2], 1))
+
+x_train = x_train.astype('float32')/255
+x_test = x_test.astype('float32')/255
+
+fig = plt.figure(figsize=(5,3))
+for i in range(15):
+    ax=fig.add_subplot(2,10, i+1, xticks=[], yticks=[])
+    ax.imshow(np.squeeze(x_train[i]), cmap='gray')
+    ax.set_title(y_train[i])
+
+img_shape = x_train.shape[1:]
+print(img_shape)
+
+model = Sequential()
+
+model.add(Conv2D(32, (3,3), input_shape = (28,28,1), activation='relu'))
+model.add(MaxPool2D((2,2)))
+                              
+model.add(Conv2D(64, (3,3), activation='relu'))
+model.add(MaxPool2D((2,2)))
+
+model.add(Flatten())
+
+model.add(Dropout(0.25))
+ 
+model.add(Dense(10, activation="softmax"))
+
+model.summary()
+
+#plot_model(model, 'model.jpg', show_shapes=True)
+
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+
+x=model.fit(x_train, y_train, epochs=10, batch_size=128, verbose=2, validation_split=0.1)
+
+loss, accuracy = model.evaluate(x_test, y_test, verbose=0)
+print(f'Accuracy: {accuracy*100}')
+
+image = x_train[5]
+
+plt.imshow(np.squeeze(image), cmap='gray')
+plt.show
+
+image = image.reshape(1, image.shape[0], image.shape[1], image.shape[2])
+p = model.predict([image])
+print('Predicted: {}' .format(argmax(p)))
+model.save("mnist_model.h5")
+print(os.path.exists("mnist_model.h5"))
